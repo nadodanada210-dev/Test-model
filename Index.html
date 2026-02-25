@@ -3,68 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ليلة العمر - فخامة مغربية</title>
+    <title>دعوة زفاف: سلوى & وائل</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --royal-pink: #ad1457; --gold-foil: #d4a373; }
         body {
             margin: 0; padding: 0;
-            /* خلفية وردية بنقوش أندلسية فخمة */
-            background: linear-gradient(rgba(255, 192, 203, 0.8), rgba(255, 192, 203, 0.8)), 
+            /* خلفية خضراء ملكية بنقوش ذهبية خفيفة */
+            background: linear-gradient(rgba(0, 77, 64, 0.9), rgba(0, 77, 64, 0.9)), 
                         url('https://www.toptal.com/designers/subtlepatterns/uploads/arabesque.png');
             background-size: repeat;
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
             font-family: 'Amiri', serif;
         }
-        .invitation-card {
-            background: #fff; padding: 30px; text-align: center;
-            border: 10px solid; border-image: url('https://www.transparenttextures.com/patterns/gold-scale.png') 30 round;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            width: 85%; max-width: 450px; border-radius: 15px; position: relative;
+        .card {
+            background: #fff; padding: 40px 20px; text-align: center;
+            border: 10px double #d4a373; /* إطار ذهبي ملكي */
+            border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            width: 85%; max-width: 420px; position: relative;
         }
-        .invitation-card::before {
-            content: "✨"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 2rem;
-        }
-        h1 { font-family: 'Aref Ruqaa', serif; color: var(--royal-pink); font-size: 3rem; margin: 10px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-        .divider { width: 60%; height: 2px; background: var(--gold-foil); margin: 15px auto; }
-        .details-box { border: 1px solid var(--gold-foil); padding: 15px; margin: 20px 0; border-radius: 10px; background: #fffafb; }
-        .whatsapp-btn {
-            background: linear-gradient(45deg, #ad1457, #e91e63); color: white;
+        h1 { font-family: 'Aref Ruqaa', serif; color: #004d40; font-size: 3.5rem; margin: 10px 0; }
+        .gold-text { color: #d4a373; font-weight: bold; font-size: 1.2rem; }
+        .details { font-size: 1.4rem; color: #333; margin: 20px 0; border-top: 1px solid #d4a373; border-bottom: 1px solid #d4a373; padding: 15px 0; }
+        .btn-confirm {
+            background: linear-gradient(45deg, #d4a373, #b8860b); color: white;
             padding: 15px 35px; border-radius: 50px; text-decoration: none;
-            display: inline-block; font-weight: bold; font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(173, 20, 87, 0.3); animation: pulse 2s infinite;
+            display: inline-block; font-weight: bold; font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
         }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        .flower-fall { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        /* تأثير تساقط ورود الياسمين البيضاء */
+        .flower { position: absolute; color: #fff; font-size: 20px; pointer-events: none; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
-<body>
-    <div class="invitation-card">
-        <p style="color: var(--gold-foil); letter-spacing: 2px;">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</p>
-        <p style="font-size: 1.2rem; color: #444;">يُشرّفنا دعوتكم لمشاركتنا فرحتنا</p>
-        <div class="divider"></div>
-        <h1>سارة & أحمد</h1>
-        <div class="divider"></div>
-        
-        <div class="details-box">
-            <p style="font-size: 1.3rem; margin: 5px 0;">🗓️ السبت، 15 يوليوز 2026</p>
-            <p style="font-size: 1.3rem; margin: 5px 0;">📍 بقاعة الأفراح الملكية</p>
-            <p style="font-size: 1.1rem; color: var(--royal-pink);">"حضوركم يتمم سعادتنا"</p>
+<body onclick="playMusic()">
+    <div class="card">
+        <p class="gold-text">⚜️ بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ⚜️</p>
+        <p style="font-size: 1.1rem;">يسعدنا دعوتكم لحضور حفل زفاف</p>
+        <h1>سلوى & وائل</h1>
+        <div class="details">
+            <p>🗓️ 12 مارس 2026</p>
+            <p>📍 بقاعة الأفراح الملكية</p>
         </div>
-
-        <a href="https://wa.me/212600000000" class="whatsapp-btn">تأكيد الحضور عبر الواتساب</a>
-        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">(إضغطي في أي مكان لسماع الدقة المراكشية 🎵)</p>
+        <p class="gold-text">"حضوركم زينة لفرحتنا"</p>
+        <a href="https://wa.me/212600000000" class="btn-confirm">تأكيد الحضور</a>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">(اضغطي لتشغيل الدقة المراكشية 🎵)</p>
     </div>
 
-    <audio id="audio" loop>
+    <audio id="music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        document.body.addEventListener('click', function() {
-            var audio = document.getElementById('audio');
-            audio.play();
-        });
+        function playMusic() { document.getElementById('music').play(); }
+        // إضافة الورود البيضاء المتساقطة
+        for(let i=0; i<20; i++) {
+            let flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = '🌸';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            flower.style.opacity = Math.random();
+            document.body.appendChild(flower);
+        }
     </script>
 </body>
 </html>
