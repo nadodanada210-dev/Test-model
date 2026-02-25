@@ -1,49 +1,88 @@
-<style>
-    :root {
-        --gold: #d4af37;
-        --dark-gold: #b8860b;
-    }
 
-    body {
-        margin: 0;
-        padding: 0;
-        /* خلفية مغربية راقية (زخرفة مذهبة) */
-        background: linear-gradient(rgba(255, 250, 240, 0.8), rgba(255, 250, 240, 0.8)), 
-                    url('https://images.unsplash.com/photo-1582192732881-43b74633ac05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-attachment: fixed;
-        font-family: 'Amiri', serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة فرح ملكية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --soft-pink: #fce4ec; --rose-gold: #d4a373; --dark-rose: #880e4f; }
+        body {
+            margin: 0; padding: 0;
+            /* خلفية ورود احترافية */
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-attachment: fixed;
+            font-family: 'Amiri', serif; display: flex;
+            justify-content: center; align-items: center; min-height: 100vh; overflow-x: hidden;
+        }
+        /* بتلات الورد المتساقطة */
+        .flower { position: absolute; color: #ff80ab; font-size: 20px; animation: fall linear infinite; opacity: 0.8; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
+        
+        .container {
+            position: relative; width: 85%; max-width: 450px;
+            background: rgba(255, 255, 255, 0.9); padding: 40px 20px;
+            text-align: center; border: 3px double var(--rose-gold);
+            border-radius: 50px 5px 50px 5px; box-shadow: 0 15px 35px rgba(136, 14, 79, 0.2); z-index: 1;
+        }
+        h1 { font-family: 'Aref Ruqaa', serif; color: var(--dark-rose); font-size: 2.5rem; margin: 10px 0; }
+        .countdown { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .time-box { background: var(--dark-rose); color: white; padding: 10px; border-radius: 10px; min-width: 55px; }
+        .whatsapp-btn {
+            display: inline-block; margin-top: 20px; padding: 12px 35px;
+            background: #e91e63; color: white; text-decoration: none;
+            border-radius: 30px; font-weight: bold; box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="flowerContainer"></div>
+    <div class="container">
+        <p style="color: var(--dark-rose); font-weight: bold;">باسم الله وبالله وعلى بركة الله</p>
+        <p style="color: var(--rose-gold);">﴿ وَجَعَلَ بَيْنكُم مَّوَدَّةً وَرَحْمَةً ﴾</p>
+        <h1>سارة & أحمد</h1>
+        <p>نتشرف بدعوتكم لمشاركتنا فرحة العمر</p>
+        <div class="countdown" id="timer">
+            <div class="time-box"><span id="days">0</span><br><small>يوم</small></div>
+            <div class="time-box"><span id="hours">0</span><br><small>ساعة</small></div>
+            <div class="time-box"><span id="mins">0</span><br><small>دقيقة</small></div>
+        </div>
+        <p>📍 بقاعة الأفراح (اسم القاعة)</p>
+        <p>🗓️ السبت، 15 يوليوز 2026</p>
+        <a href="https://wa.me/212600000000" class="whatsapp-btn">تأكيد الحضور</a>
+        <p style="font-size: 0.8rem; color: #880e4f; margin-top: 15px;">🎵 اضغطي هنا لتشغيل الأندلسي</p>
+    </div>
 
-    /* تأثير القلوب باللون الأحمر والذهبي */
-    .heart {
-        position: absolute;
-        color: var(--gold); /* تقدري تبدليها لـ red إلا بغيتي قلوب حمراء */
-        font-size: 20px;
-        animation: fall linear infinite;
-        text-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-    /* الإطار الملكي */
-    .container {
-        position: relative;
-        width: 85%;
-        max-width: 450px;
-        background: rgba(255, 255, 255, 0.95);
-        padding: 50px 25px;
-        text-align: center;
-        border: 2px solid var(--gold);
-        outline: 8px double var(--gold);
-        outline-offset: -15px;
-        border-radius: 5px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        z-index: 1;
-    }
+    <script>
+        const weddingDate = new Date("July 15, 2026 20:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
 
-    /* باقي الستايلات كتبقى كما هي */
-</style>
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerHTML = '🌸';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 4 + 's';
+            document.getElementById('flowerContainer').appendChild(flower);
+            setTimeout(() => flower.remove(), 6000);
+        }
+        setInterval(createFlower, 500);
+
+        document.body.addEventListener('click', () => {
+            document.getElementById('bgMusic').play();
+        });
+    </script>
+</body>
+</html>
