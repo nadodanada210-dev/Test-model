@@ -1,70 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف: سلوى & وائل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+    <title>دعوة زفاف مريم وأيوب</title>
     <style>
+        :root {
+            --bg-color: #fce4ec; /* وردي هادئ */
+            --envelope-color: #1a2a6c; /* أزرق ملكي */
+            --paper-color: #ffffff;
+            --accent-pink: #d81b60;
+        }
+
         body {
-            margin: 0; padding: 0;
-            /* خلفية خضراء ملكية بنقوش ذهبية خفيفة */
-            background: linear-gradient(rgba(0, 77, 64, 0.9), rgba(0, 77, 64, 0.9)), 
-                        url('https://www.toptal.com/designers/subtlepatterns/uploads/arabesque.png');
-            background-size: repeat;
-            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
             font-family: 'Amiri', serif;
+            overflow: hidden;
         }
-        .card {
-            background: #fff; padding: 40px 20px; text-align: center;
-            border: 10px double #d4a373; /* إطار ذهبي ملكي */
-            border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            width: 85%; max-width: 420px; position: relative;
+
+        /* حاوية الظرف */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: 0.5s;
         }
-        h1 { font-family: 'Aref Ruqaa', serif; color: #004d40; font-size: 3.5rem; margin: 10px 0; }
-        .gold-text { color: #d4a373; font-weight: bold; font-size: 1.2rem; }
-        .details { font-size: 1.4rem; color: #333; margin: 20px 0; border-top: 1px solid #d4a373; border-bottom: 1px solid #d4a373; padding: 15px 0; }
-        .btn-confirm {
-            background: linear-gradient(45deg, #d4a373, #b8860b); color: white;
-            padding: 15px 35px; border-radius: 50px; text-decoration: none;
-            display: inline-block; font-weight: bold; font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--envelope-color);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        /* تأثير تساقط ورود الياسمين البيضاء */
-        .flower { position: absolute; color: #fff; font-size: 20px; pointer-events: none; animation: fall linear infinite; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+
+        /* غطاء الظرف */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid var(--envelope-color);
+            transform-origin: top;
+            transition: transform 0.5s 0.3s;
+        }
+
+        /* البطاقة داخل الظرف */
+        .letter {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 180px;
+            background: var(--paper-color);
+            padding: 20px;
+            text-align: center;
+            transition: 0.5s;
+            z-index: 1;
+            box-sizing: border-box;
+            border: 2px solid var(--accent-pink);
+        }
+
+        .letter h2 {
+            font-size: 1.5rem;
+            color: var(--envelope-color);
+            margin: 10px 0;
+        }
+
+        .letter p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* الحركة عند الفتح */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translate(-50%, -120px);
+            height: 320px; /* تمدد البطاقة لتظهر المعلومات */
+            z-index: 3;
+        }
+
+        /* لمسة الخواتم في الفيديو */
+        .rings-seal {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .whatsapp-btn {
+            display: none;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .open .whatsapp-btn { display: inline-block; }
     </style>
 </head>
-<body onclick="playMusic()">
-    <div class="card">
-        <p class="gold-text">⚜️ بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ⚜️</p>
-        <p style="font-size: 1.1rem;">يسعدنا دعوتكم لحضور حفل زفاف</p>
-        <h1>سلوى & وائل</h1>
-        <div class="details">
-            <p>🗓️ 12 مارس 2026</p>
-            <p>📍 بقاعة الأفراح الملكية</p>
+<body>
+
+    <div class="envelope-wrapper" onclick="this.classList.toggle('open')">
+        <div class="envelope">
+            <div class="rings-seal">💍</div>
         </div>
-        <p class="gold-text">"حضوركم زينة لفرحتنا"</p>
-        <a href="https://wa.me/212600000000" class="btn-confirm">تأكيد الحضور</a>
-        <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">(اضغطي لتشغيل الدقة المراكشية 🎵)</p>
+        <div class="letter">
+            <h2>مريم & أيوب</h2>
+            <p>نتشرف بدعوتكم لحضور حفل زفافنا</p>
+            <p><strong>06 / 06 / 2026</strong></p>
+            <p>طنجة - قاعة اللؤلؤة</p>
+            <hr>
+            <a href="https://wa.me/212608620673" class="whatsapp-btn">تأكيد الحضور</a>
+        </div>
     </div>
 
-    <audio id="music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        function playMusic() { document.getElementById('music').play(); }
-        // إضافة الورود البيضاء المتساقطة
-        for(let i=0; i<20; i++) {
-            let flower = document.createElement('div');
-            flower.className = 'flower';
-            flower.innerHTML = '🌸';
-            flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            flower.style.opacity = Math.random();
-            document.body.appendChild(flower);
-        }
-    </script>
 </body>
 </html>
